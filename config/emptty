@@ -4,7 +4,7 @@ Selection=false
 
 # SOURCE
 . /etc/profile
-[ -f "$HOME/.zshenv" ] && . "$HOME/.zshenv"
+[ -f "$HOME/.profile" ] && . "$HOME/.profile"
 [ -f "$HOME/.cache/Xresources" ] && xrdb -merge "$HOME/.cache/Xresources"
 
 # X SETTINGS

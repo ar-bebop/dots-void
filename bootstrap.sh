@@ -7,4 +7,7 @@ fi
 
 # CONFIG
 [ -d "$HOME/.config" ] || mkdir "$HOME/.config"
-stow --target="$HOME/.config" config
+stow --target="$HOME/.config" -R config
+
+# HOME
+stow --dotfiles -R home
