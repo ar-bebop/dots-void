@@ -1,8 +1,7 @@
 lastupdatecheck: 0
 recentrepos:
 - /home/bebop/dots
-- /home/bebop/dots/suckless/dwmblocks
-- /home/bebop/dots/suckless/dmenu
+- /home/bebop/suckless/dwmblocks
 startuppopupversion: 5
 customcommandshistory:
 - echo

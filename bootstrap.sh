@@ -5,5 +5,6 @@ if ! type stow > /dev/null 2>&1; then
     exit 1
 fi
 
+# CONFIG
 [ -d "$HOME/.config" ] || mkdir "$HOME/.config"
-stow -t "$HOME/.config" config
+stow --target="$HOME/.config" config
