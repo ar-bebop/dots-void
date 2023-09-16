@@ -1,0 +1,16 @@
+dwm.normbgcolor: {color0}
+dwm.normbordercolor: {color8}
+dwm.normfgcolor: {color15}
+
+dwm.selbgcolor: {color0}
+dwm.selbordercolor: {color2}
+dwm.selfgcolor: {color2}
+
+dwm.col_urgborder: {color1}
+
+dwm.col1: {color3}
+dwm.col2: {color4}
+dwm.col3: {color5}
+dwm.col4: {color6}
+dwm.col5: {color7}
+dwm.col6: {color8}

@@ -1,0 +1,31 @@
+[user]
+    name = ar-bebop
+    email = aribeir4@gmail.com
+
+[init]
+    defaultBranch = main
+
+[color]
+    ui = auto
+
+[core]
+    editor = nvim
+    pager = delta
+	autocrlf = input
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    syntax-theme= base16
+    side-by-side = true
+    line-numbers = true
+    navigate = true
+    hyperlinks = true
+    light = false
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default

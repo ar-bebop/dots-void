@@ -1,0 +1,10 @@
+lastupdatecheck: 0
+recentrepos:
+- /home/bebop/dots
+- /home/bebop/dots/suckless/dwmblocks
+- /home/bebop/dots/suckless/dmenu
+startuppopupversion: 5
+customcommandshistory:
+- echo
+hidecommandlog: false
+ignorewhitespaceindiffview: false

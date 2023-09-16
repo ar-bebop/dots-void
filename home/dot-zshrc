@@ -1,0 +1,91 @@
+#!/bin/zsh
+ZDIR="$HOME/.config/zsh"
+
+cat ~/.cache/wallust/sequences
+
+# INSTANT PROMPT. SHOULD STAY AT TOP. CODE REQUIRING INPUT SHOULD BE BEFORE.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+[[ ! -f "$ZDIR/fzf.config" ]] || source "$ZDIR/fzf.config"
+
+# SHELL OPTIONS AND VARIABLES
+HISTFILE=~/.cache/histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt extendedglob notify
+unsetopt beep
+bindkey -v # VIM keybinds
+
+# ZCOMET BOOTSTRAP
+if [[ ! -f "${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh" ]]; then
+  command git clone https://github.com/agkozak/zcomet.git "${ZDOTDIR:-${HOME}}/.zcomet/bin"
+fi
+source "${ZDOTDIR:-${HOME}}/.zcomet/bin/zcomet.zsh"
+
+# PLUGINS
+zcomet load romkatv/powerlevel10k
+[[ ! -f "$ZDIR/p10k.zsh" ]] || source "$ZDIR/p10k.zsh"
+
+function zvm_config() {
+    ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
+    ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
+    ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_BLINKING_UNDERLINE
+    ZVM_VI_HIGHLIGHT_FOREGROUND=black
+    ZVM_VI_HIGHLIGHT_BACKGROUND=yellow
+}
+zcomet load jeffreytse/zsh-vi-mode
+
+zcomet load zsh-users/zsh-syntax-highlighting # KEEP THIS AND NEXT LAST, IN ORDER
+zcomet load zsh-users/zsh-autosuggestions
+zcomet load zsh-users/zsh-history-substring-search
+
+# COMPLETIONS
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _ignored _correct
+zstyle ':completion:*' format '%U%d%u'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' insert-unambiguous false
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-prompt '%S%l: %p%s'
+zstyle ':completion:*' matcher-list '' '+m:{[:lower:]}={[:upper:]} m:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*' '+r:|[._-]=* r:|=*'
+zstyle ':completion:*' max-errors 3
+zstyle ':completion:*' menu select
+zstyle ':completion:*' original true
+zstyle ':completion:*' prompt '%Berrors: %e%b'
+zstyle ':completion:*' select-prompt '%Smenu: %p%s'
+zstyle ':completion:*' verbose true
+zstyle :compinstall filename '/home/bebop/.zshrc'
+
+# COMPINIT
+zstyle ':zcomet:compinit' dump-file "$HOME/.cache/zcompdump"
+zcomet compinit
+
+# BINDS
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+zmodload zsh/complist
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+
+# ALIASES
+alias ls="ls --color=auto"
+alias ll="ls --color=auto -al"
+alias l="exa -lh --icons --git --sort type"
+alias la="exa -lah --icons --git --sort type"
+alias man="man -O width=$COLUMNS"
+alias vi="nvim"
+alias bat="bat --theme=base16 --color=always"
+
+lfcd () {
+    LAST_DIR="$HOME/.cache/lf_last_dir"
+    lf -last-dir-path "$LAST_DIR"
+    cd $(cat "$LAST_DIR")
+}
+alias lf=lfcd

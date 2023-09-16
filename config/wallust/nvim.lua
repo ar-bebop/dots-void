@@ -1,0 +1,18 @@
+return {
+    base00 = '{color0}',
+    base01 = '{color0}',
+    base02 = '{color8}',
+    base03 = '{color7}',
+    base04 = '{color0}',
+    base05 = '{color15}',
+    base06 = '{color9}',
+    base07 = '{color12}',
+    base08 = '{color1}',
+    base09 = '{color4}',
+    base0A = '{color11}',
+    base0B = '{color2}',
+    base0C = '{color14}',
+    base0D = '{color5}',
+    base0E = '{color3}',
+    base0F = '{color6}',
+}

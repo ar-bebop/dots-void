@@ -1,0 +1,63 @@
+# wallust 2.6.*
+# -- global space -- #
+
+# How the image is parse, in order to get the colors:
+#  * full    - reads the whole image (more precision, slower)
+#  * resized - resizes the image to 1/4th of the original, before parsing it (more color mixing, faster)
+#  * thumb   - fast algo hardcoded to 512x512 (faster than resized)
+#  * wal     - uses image magick `convert` to read the image (less colors)
+backend = "thumb"
+
+# What color space to use to produce and select the most prominent colors:
+#  * lab      - use CIEL*a*b color space
+#  * labmixed - variant of lab that mixes colors, if not enough colors it fallbacks to usual lab,
+# for that reason is not recommended in small images
+color_space = "lab"
+
+# Difference between similar colors, used by the colorspace:
+#  1          Not perceptible by human eyes.
+#  1 - 2      Perceptible through close observation.
+#  2 - 10     Perceptible at a glance.
+#  11 - 49    Colors are more similar than opposite
+#  100        Colors are exact opposite
+threshold = 23
+
+# Use the most prominent colors in a way that makes sense, a scheme:
+#  * dark      - 8 dark colors, color0 darkest - color7 lightest, dark background light contrast
+#  * dark16    - same as dark but it displays 16 colors
+#  * harddark  - same as dark but with darker hard hue colors
+#  * light     - 8 light colors, color0 lightest - color7 darkest, light background dark contrast
+#  * light16   - same as light but displays 16 colors
+#  * softlight - counterpart of `harddark`
+filter = "dark16"
+
+# Templates (OPTIONAL) example entries, which are just a file you wish to apply `wallust` generated colors to.
+# [[entry]]
+# # a relative path to a file where wallust.toml is (~/.config/wallust/)
+# template = "dunstrc"
+#
+# # absolute path to the file to write the template (after templating)
+# target = "~/.config/dunst/dunstrc"
+#
+# [[entry]]
+# template = "zathurarc"
+# target = "~/.config/zathura/zathurarc"
+#
+# [[entry]]
+# template = "glava_bars"
+# target = "~/.config/glava/bars.glsl"
+[[entry]]
+template = "Xresources"
+target = "~/.cache/Xresources"
+
+[[entry]]
+template = "nvim.lua"
+target = "~/.config/nvim/lua/config/colors.lua"
+
+[[entry]]
+template = "sioyek.config"
+target = "~/.config/sioyek/colors.config"
+
+[[entry]]
+template = "qutebrowser.py"
+target = "~/.config/qutebrowser/colors.py"

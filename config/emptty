@@ -1,0 +1,20 @@
+#!/bin/sh
+# shellcheck disable=2034
+Selection=false
+
+# SOURCE
+. /etc/profile
+[ -f "$HOME/.zshenv" ] && . "$HOME/.zshenv"
+[ -f "$HOME/.cache/Xresources" ] && xrdb -merge "$HOME/.cache/Xresources"
+
+# X SETTINGS
+autorandr -c
+xset r rate 400 60 &
+xwallpaper --zoom ~/pics/wallpapers/void-linux_dunes.png &
+
+# DAEMONS
+killall pipewire || pipewire &
+killall picom || picom -b
+killall dwmblocks || dwmblocks &
+
+exec /usr/local/bin/dwm
