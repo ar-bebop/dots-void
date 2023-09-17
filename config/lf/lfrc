@@ -36,8 +36,7 @@ map x $$f
 map X !$f
 
 # dedicated keys for file opener actions
-map o &mimeopen $f
-map O $mimeopen --ask $f
+map o &$OPENER $fx
 
 # define a custom 'open' command
 # This command is called when current file is not a directory. You may want to
@@ -46,7 +45,7 @@ map O $mimeopen --ask $f
 cmd open &{{
     case $(file --mime-type -Lb $f) in
         text/*) lf -remote "send $id \$$EDITOR \$fx";;
-        *) $OPENER $fx > /dev/null 2> /dev/null & done;;
+        *) $OPENER $fx > /dev/null 2> /dev/null &;;
     esac
 }}
 

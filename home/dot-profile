@@ -11,5 +11,5 @@ appendpath() {
 appendpath "$HOME/bin"
 
 export EDITOR="nvim"
-export OPENER="mimeopen"
+export OPENER="mimeo"
 export BAT_THEME="base16"
