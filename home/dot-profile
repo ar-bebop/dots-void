@@ -1,6 +1,6 @@
 #!/bin/sh
 
-appendpath () {
+appendpath() {
     case ":$PATH:" in
         *:"$1":*)
             ;;

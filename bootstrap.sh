@@ -18,16 +18,16 @@ EOF
 # CONFIG
 install_config() {
     [ -d "$HOME/.config" ] || mkdir "$HOME/.config"
-    stow --target="$HOME/.config" -R config
+    stow -R --target="$HOME/.config" config
 }
 # HOME
 install_home() {
-    stow --dotfiles -R home
+    stow -R --dotfiles home
 }
 
 remove_all() {
-    stow --dotfiles -D config
-    stow --target="$HOME/.config" -D config
+    stow -D --dotfiles home
+    stow -D --target="$HOME/.config" config
 }
 
 install_config

@@ -1,11 +1,12 @@
 #!/bin/sh
 # shellcheck disable=2034
-Selection=false
+Selection=false # emptty does not ask for desktop selection
 
 # SOURCE
 . /etc/profile
-[ -f "$HOME/.profile" ] && . "$HOME/.profile"
-[ -f "$HOME/.cache/Xresources" ] && xrdb -merge "$HOME/.cache/Xresources"
+# shellcheck disable=1090
+[ -f ~/.profile ] && . ~/.profile
+[ -f ~/.cache/Xresources ] && xrdb -merge ~/.cache/Xresources
 
 # X SETTINGS
 autorandr -c
