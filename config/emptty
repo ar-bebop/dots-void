@@ -18,4 +18,4 @@ killall pipewire || pipewire &
 killall picom || picom -b
 killall dwmblocks || dwmblocks &
 
-exec /usr/local/bin/dwm
+exec dbus-launch --exit-with-session /usr/local/bin/dwm
