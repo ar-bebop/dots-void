@@ -46,7 +46,7 @@ filter = "dark16"
 # target = "~/.config/glava/bars.glsl"
 [[entry]]
 template = "Xresources"
-target = "~/.cache/Xresources"
+target = "~/.cache/Xcolors"
 
 [[entry]]
 template = "nvim.lua"

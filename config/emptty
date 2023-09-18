@@ -6,7 +6,7 @@ Selection=false # emptty does not ask for desktop selection
 . /etc/profile
 # shellcheck disable=1090
 [ -f ~/.profile ] && . ~/.profile
-[ -f ~/.cache/Xresources ] && xrdb -merge ~/.cache/Xresources
+[ -f ~/.config/Xresources ] && xrdb -I"$HOME"/.cache -merge ~/.config/Xresources
 
 # X SETTINGS
 autorandr -c

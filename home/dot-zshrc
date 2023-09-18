@@ -77,8 +77,8 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 # ALIASES
 alias ls="ls --color=auto"
 alias ll="ls --color=auto -al"
-alias l="eza -lh --icons --git --git-repos --sort type"
-alias la="eza -lah --icons --git --sort type"
+alias l="eza -lh --icons --git --sort type"
+alias la="eza -lah --icons --git --git-repos --sort type"
 alias man="man -O width=$COLUMNS"
 alias vi="nvim"
 alias bat="bat --theme=base16 --color=always"
