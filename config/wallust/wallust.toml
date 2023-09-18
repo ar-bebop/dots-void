@@ -1,9 +1,7 @@
 # wallust 2.6.*
 # -- global space -- #
 
-# How the image is parse, in order to get the colors:
-#  * full    - reads the whole image (more precision, slower)
-#  * resized - resizes the image to 1/4th of the original, before parsing it (more color mixing, faster)
+# How the image is parse, in order to get the colors: * full    - reads the whole image (more precision, slower) * resized - resizes the image to 1/4th of the original, before parsing it (more color mixing, faster)
 #  * thumb   - fast algo hardcoded to 512x512 (faster than resized)
 #  * wal     - uses image magick `convert` to read the image (less colors)
 backend = "thumb"
@@ -61,3 +59,7 @@ target = "~/.config/sioyek/colors.config"
 [[entry]]
 template = "qutebrowser.py"
 target = "~/.config/qutebrowser/colors.py"
+
+[[entry]]
+template = "dunst.conf"
+target = "~/.config/dunst/dunstrc.d/99-colors.conf"
