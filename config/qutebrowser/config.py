@@ -6,6 +6,8 @@ config.load_autoconfig(False)
 
 c.colors.webpage.preferred_color_scheme = 'dark'
 
+c.content.blocking.method = 'both'
+
 c.content.javascript.clipboard = 'access'
 c.content.autoplay = False
 

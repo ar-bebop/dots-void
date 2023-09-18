@@ -16,6 +16,11 @@ xwallpaper --zoom ~/pics/wallpapers/void-linux_dunes.png &
 # DAEMONS
 killall pipewire || pipewire &
 killall picom || picom -b
+
+# programs below require pipewire to be initialized and running
+# this is a hacky fix... using "until pidof" loop did not work
+sleep 2
+killall pulse_daemon.sh || ~/suckless/dwmblocks/daemons/pulse_daemon.sh &
 killall dwmblocks || dwmblocks &
 
 exec dbus-launch --exit-with-session /usr/local/bin/dwm
