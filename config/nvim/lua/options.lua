@@ -24,5 +24,6 @@ o.swapfile = false
 o.termguicolors = true
 o.scrolloff = 16
 o.fillchars:append('eob: ')
+o.updatetime = 100
 
 g.mapleader = ' '

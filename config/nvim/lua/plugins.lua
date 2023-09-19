@@ -124,6 +124,12 @@ lazy.setup {
         }
     },
     {
+        'iamcco/markdown-preview.nvim',
+        build = function()
+            vim.fn['mkdp#util#install']()
+        end
+    },
+    {
         'serenevoid/kiwi.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
         lazy = true,

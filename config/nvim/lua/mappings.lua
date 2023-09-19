@@ -52,6 +52,11 @@ wk.register({
         d = { kiwi.open_diary_index, 'diary index' },
         n = { kiwi.open_diary_new, 'diary new' },
         t = { kiwi.todo.toggle, 'toggle task' },
+    },
+    ['<leader>m'] = {
+        name = 'markdown',
+        p = {'<cmd>MarkdownPreview<cr>', 'preview'},
+        s = {'<cmd>MarkdownPreviewStop<cr>', 'stop'}
     }
 })
 
