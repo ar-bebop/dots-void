@@ -29,7 +29,8 @@ cmd open &{{
     esac
 }}
 
-cmd trash %set -f; mv $fx ~/.trash || mkdir -p ~/.trash/ && mv $fx ~/.trash
+%mkdir -p ~/.cache/trash
+cmd trash %set -f; mv $fx ~/.cache/trash
 
 cmd delete ${{
     set -f
