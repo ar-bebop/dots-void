@@ -11,9 +11,10 @@ c.content.blocking.method = 'both'
 c.content.javascript.clipboard = 'access'
 c.content.javascript.can_close_tabs = True
 c.content.javascript.can_open_tabs_automatically = True
-c.content.autoplay = False
 
+c.content.autoplay = False
 c.content.pdfjs = True
+c.content.local_content_can_access_remote_urls = True
 
 c.downloads.location.suggestion = 'both'
 c.downloads.remove_finished = 8
