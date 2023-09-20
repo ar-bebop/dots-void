@@ -32,8 +32,6 @@ vim.cmd('hi DiagnosticFloatingInfo guibg=none')
 vim.cmd('hi DiagnosticFloatingOk guibg=none')
 vim.cmd('hi DiagnosticFloatingWarn guibg=none')
 
-vim.cmd('hi Error guibg=none')
-
 vim.cmd('hi DiffAdded guibg=none')
 vim.cmd('hi DiffFile guibg=none')
 vim.cmd('hi DiffLine guibg=none')

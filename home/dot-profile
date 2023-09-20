@@ -9,6 +9,8 @@ appendpath() {
     esac
 }
 appendpath "$HOME/bin"
+appendpath "$HOME/.local/bin"
+appendpath "$HOME/scripts"
 
 export EDITOR="nvim"
 export OPENER="mimeo"
