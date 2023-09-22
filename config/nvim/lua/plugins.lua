@@ -138,25 +138,20 @@ lazy.setup {
         }
     },
     {
-        'mickael-menu/zk-nvim',
-        config = function()
-            require('zk').setup({
-                picker = 'telescope',
-                lsp = {
-                    config = {
-                        cmd = { 'zk', 'lsp' },
-                        name = 'zk'
-                    },
-                    auto_attach = {
-                        enabled = true,
-                        filetypes = { 'markdown' }
-                    }
-                }
-            })
-        end
-    },
-    {
         'uga-rosa/ccc.nvim',
         opts = { highlighter = { auto_enable = true, lsp = true } },
     },
+    {
+        'ziontee113/icon-picker.nvim',
+        dependencies = { 'stevearc/dressing.nvim' },
+        opts = { disable_lagacy_commands = true }
+    },
+    {
+        'dccsillag/magma-nvim',
+        dependencies = { 'rcarriga/nvim-notify' },
+        build = ':UpdateRemotePlugins',
+        config = function()
+            vim.cmd('let g:magma_image_provider = "ueberzug"')
+        end
+    }
 }

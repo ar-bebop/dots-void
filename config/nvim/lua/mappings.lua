@@ -55,10 +55,22 @@ wk.register({
     },
     ['<leader>m'] = {
         name = 'markdown',
-        p = {'<cmd>MarkdownPreview<cr>', 'preview'},
-        s = {'<cmd>MarkdownPreviewStop<cr>', 'stop'}
+        p = { '<cmd>MarkdownPreview<cr>', 'preview' },
+        s = { '<cmd>MarkdownPreviewStop<cr>', 'stop' }
+    },
+    ['<leader>k'] = {
+        name = 'kernel',
+        i = { '<cmd>MagmaInit<cr>', 'init' },
+        c = { '<cmd>MagmaRestart<cr>', 'clear & restart' },
+        e = { '<cmd>MagmaReevaluateCell<cr>', 're-evaluate cell' },
+        o = { '<cmd>MagmaShowOutput<cr>', 'show output' },
     }
 })
 
 set('n', '<tab>', '<cmd>bnext<cr>', { desc = 'next buffer' })
 set('n', '<S-tab>', '<cmd>bNext<cr>', { desc = 'previous buffer' })
+
+-- this is a very nasty hack, for some reason there is no reasonable way to map the below in lua,
+-- so vimscript is used to map, along with empty lua mapping for description
+set('n', '<leader>kr', '', { desc = 'evaluate operator' })
+vim.cmd('nnoremap <expr><silent> <leader>kr  nvim_exec("MagmaEvaluateOperator", v:true)')
