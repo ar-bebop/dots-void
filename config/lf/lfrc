@@ -93,6 +93,7 @@ cmd on-cd &{{
 		fmt="\033[32;1m%u@%h\033[0m:\033[34;1m%d\033[0m\033[1m%f\033[0m"
 	fi
 	lf -remote "send $id set promptfmt \"$fmt\""
+    printf "\033]0; $(pwd | sed "s|$HOME|~|") - lf\007" > /dev/tty
 }}
 
 map <enter> shell
@@ -105,3 +106,5 @@ map <delete> trash
 map <s-delete> delete
 map <insert> :push %touch<space>
 map <tab> $lazygit
+
+on-cd

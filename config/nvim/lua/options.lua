@@ -26,4 +26,7 @@ o.scrolloff = 16
 o.fillchars:append('eob: ')
 o.updatetime = 100
 
+-- TITLE --
+o.title = true
+
 g.mapleader = ' '

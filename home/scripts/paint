@@ -1,0 +1,9 @@
+#!/bin/sh
+
+wallust "$@"
+
+for ARG in "$@"; do
+    if [ -f "$ARG" ]; then
+        xwallpaper "$ARG"
+    fi
+done
