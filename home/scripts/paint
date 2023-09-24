@@ -1,9 +1,32 @@
 #!/bin/sh
 
-wallust "$@"
+# WALLPAPER CACHE
+WALLPAPER_CACHE="$HOME/.cache/wallpaper"
+[ -f "$WALLPAPER_CACHE" ] && WALLPAPER="$(cat ~/.cache/wallpaper)"
 
-for ARG in "$@"; do
+if [ -z "$*" ]; then
+    wallust "$WALLPAPER" 2> /dev/null || printf "NO WALLPAPER CACHE FOUND, RELOADING ONLY\n"
+else
+    wallust "$@"
+fi
+
+if [ "$1" != "theme" ]; then
+    for ARG; do true; done
     if [ -f "$ARG" ]; then
-        xwallpaper "$ARG"
+        WALLPAPER="$ARG"
+        echo "$WALLPAPER" > "$WALLPAPER_CACHE"
+        killall xwallpaper 2> /dev/null; xwallpaper --daemon --zoom "$ARG"
     fi
-done
+fi
+
+# RELOAD HOOKS,
+# ARE ALWAYS RUN
+printf "\nRELOADING SOFTWARE...\n\n"
+
+# QUTEBROWSER
+pgrep qutebrowser > /dev/null 2>&1 && qutebrowser ":config-source" &&
+    printf "QUTEBROWSER RELOADED.\n\n"
+
+# XRESOURCES
+xrdb -I"$HOME"/.cache -merge ~/.config/Xresources &&
+    printf "XRESOURCES RELOADED\n"
