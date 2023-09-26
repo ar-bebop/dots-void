@@ -11,7 +11,8 @@ Selection=false # emptty does not ask for desktop selection
 # X SETTINGS
 autorandr -c
 xset r rate 400 60 &
-xwallpaper --zoom ~/pics/wallpapers/void-linux_dunes.png &
+
+paint & # INIT WALLPAPER AND COLORS
 
 # DAEMONS
 killall pipewire 2> /dev/null; pipewire &

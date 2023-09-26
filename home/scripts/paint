@@ -14,19 +14,19 @@ if [ "$1" != "theme" ]; then
     for ARG; do true; done
     if [ -f "$ARG" ]; then
         WALLPAPER="$ARG"
-        echo "$WALLPAPER" > "$WALLPAPER_CACHE"
         killall xwallpaper 2> /dev/null; xwallpaper --daemon --zoom "$ARG"
+        readlink -f "$WALLPAPER" > "$WALLPAPER_CACHE"
     fi
 fi
 
 # RELOAD HOOKS,
 # ARE ALWAYS RUN
-printf "\nRELOADING SOFTWARE...\n\n"
+printf "\nRELOADING SOFTWARE...\n===\n"
 
 # QUTEBROWSER
 pgrep qutebrowser > /dev/null 2>&1 && qutebrowser ":config-source" &&
-    printf "QUTEBROWSER RELOADED.\n\n"
+    printf "QUTEBROWSER RELOADED.\n---\n"
 
 # XRESOURCES
 xrdb -I"$HOME"/.cache -merge ~/.config/Xresources &&
-    printf "XRESOURCES RELOADED\n"
+    printf "XRESOURCES RELOADED.\n"

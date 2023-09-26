@@ -11,6 +11,7 @@ crtc 1
 mode 2560x1600
 pos 0x0
 rate 120.00
+rotate right
 x-prop-audio auto
 x-prop-broadcast_rgb Automatic
 x-prop-colorspace Default
@@ -19,7 +20,7 @@ x-prop-non_desktop 0
 output eDP-1
 crtc 0
 mode 1920x1200
-pos 2560x0
+pos 1600x0
 primary
 rate 60.00
 x-prop-broadcast_rgb Automatic
