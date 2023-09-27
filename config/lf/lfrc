@@ -1,7 +1,10 @@
+# vim:ft=conf
 set drawbox true
 set icons
 set shell sh
 set scrolloff 10
+set preview
+set previewer ~/.config/lf/preview.sh
 
 # Use the `dim` attribute instead of underline for the cursor in the preview pane
 set cursorpreviewfmt "\033[7;2m"
@@ -108,3 +111,14 @@ map <insert> :push %touch<space>
 map <tab> $lazygit
 
 on-cd
+
+${{
+    w=$(tput cols)
+    if [ $w -le 80 ]; then
+        lf -remote "send $id set ratios 1:2"
+    elif [ $w -le 160 ]; then
+        lf -remote "send $id set ratios 1:2:3"
+    else
+        lf -remote "send $id set ratios 1:2:3:5"
+    fi
+}}

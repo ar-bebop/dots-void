@@ -13,5 +13,6 @@ appendpath "$HOME/.local/bin"
 appendpath "$HOME/scripts"
 
 export EDITOR="nvim"
+export PAGER="bat"
 export OPENER="mimeo"
 export BAT_THEME="base16"
