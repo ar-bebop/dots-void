@@ -69,8 +69,9 @@ wk.register({
 
 set('n', '<tab>', '<cmd>bnext<cr>', { desc = 'next buffer' })
 set('n', '<S-tab>', '<cmd>bNext<cr>', { desc = 'previous buffer' })
+set('n', '<C-s>', '<cmd>write<cr>', { desc = 'write buffer' })
 
 -- this is a very nasty hack, for some reason there is no reasonable way to map the below in lua,
 -- so vimscript is used to map, along with empty lua mapping for description
-set('n', '<leader>kr', '', { desc = 'evaluate operator' })
+-- set('n', '<leader>kr', '', { desc = 'evaluate operator' }) -- NVM THIS DIDNT WORK
 vim.cmd('nnoremap <expr><silent> <leader>kr  nvim_exec("MagmaEvaluateOperator", v:true)')

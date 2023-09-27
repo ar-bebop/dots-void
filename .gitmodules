@@ -1,0 +1,3 @@
+[submodule "home/scripts/wal-theme-picker"]
+	path = home/scripts/wal-theme-picker
+	url = git@github.com:drybalka/wal-theme-picker.git

@@ -18,21 +18,28 @@ require('mini.base16').setup({
     }
 })
 
-vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
-vim.api.nvim_set_hl(0, 'NormalNC', { bg = 'none' })
-vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
-vim.api.nvim_set_hl(0, 'WinSeparator', { bg = 'none' })
-vim.api.nvim_set_hl(0, 'SignColumn', { bg = 'none' })
-vim.api.nvim_set_hl(0, 'LineNr', { bg = 'none' })
-vim.api.nvim_set_hl(0, 'MsgArea', { bg = 'none' })
+-- GENERAL
+vim.cmd('hi Normal guibg=none')
+vim.cmd('hi NormalNC guibg=none')
+vim.cmd('hi NormalFloat guibg=none')
+vim.cmd('hi WinSeparator guibg=none')
+vim.cmd('hi SignColumn guibg=none')
+vim.cmd('hi LineNr guibg=none')
+vim.cmd('hi MsgArea guibg=none')
 
+-- LSP GROUPS
 vim.cmd('hi DiagnosticFloatingError guibg=none')
 vim.cmd('hi DiagnosticFloatingHint guibg=none')
 vim.cmd('hi DiagnosticFloatingInfo guibg=none')
 vim.cmd('hi DiagnosticFloatingOk guibg=none')
 vim.cmd('hi DiagnosticFloatingWarn guibg=none')
 
+-- GIT GROUPS
 vim.cmd('hi DiffAdded guibg=none')
 vim.cmd('hi DiffFile guibg=none')
 vim.cmd('hi DiffLine guibg=none')
 vim.cmd('hi DiffChange guibg=none')
+
+-- WHICH-KEY GROUPS
+vim.cmd('hi WhichKeyFloat guibg=none')
+vim.cmd('hi WhichKeySeparator guibg=none')
