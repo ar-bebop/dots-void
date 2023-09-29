@@ -88,6 +88,8 @@ alias la="eza -lah --icons --git --git-repos --sort type"
 alias man="man -O width=$COLUMNS"
 alias vi="nvim"
 alias bat="bat --theme=base16 --color=always"
+alias poweroff="loginctl poweroff"
+alias reboot="loginctl reboot"
 
 lfcd () {
     LAST_DIR="$HOME/.cache/lf_last_dir"

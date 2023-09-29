@@ -25,6 +25,8 @@ vim.cmd('hi NormalFloat guibg=none')
 vim.cmd('hi WinSeparator guibg=none')
 vim.cmd('hi SignColumn guibg=none')
 vim.cmd('hi LineNr guibg=none')
+vim.cmd('hi LineNrAbove guibg=none')
+vim.cmd('hi LineNrBelow guibg=none')
 vim.cmd('hi MsgArea guibg=none')
 
 -- LSP GROUPS

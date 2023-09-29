@@ -9,15 +9,18 @@ WALLPAPER_CACHE="$HOME/.cache/wallpaper"
 # ELSE PASS ALL ARGUMENTS TO WALLUST
 if [ -z "$*" ]; then
     # PICK BEST FIT COLORSCHEME IF COLORS COULD NOT BE GENERATED
-    if ! wallust "$WALLPAPER" 2> /dev/null; then
-        printf "COLORS COULD NOT BE GENERATED, THEME IS BEING USED.\n####\n"
-        THEME=$("$(dirname "$0")"/wal-theme-picker/wal-theme-picker.py -n 4 "$WALLPAPER" |
-            awk 'NR>1{print $2}' |
-            shuf -n 1)
-        wallust theme "$THEME"
-    fi
+    wallust "$WALLPAPER" 2> /dev/null || FAIL=1
 else
-    wallust "$@"
+    wallust "$@" 2> /dev/null || FAIL=1
+fi
+
+if [ "$FAIL" = 1 ]; then
+    printf "COLORS COULD NOT BE GENERATED, THEME IS BEING USED.\n####\n"
+    THEME=$("$(dirname "$0")"/wal-theme-picker/wal-theme-picker.py "$WALLPAPER" |
+        awk 'NR==2{print $2}' |
+        shuf -n 1)
+    wallust theme "$THEME"
+
 fi
 
 # CHECK IF LAST ARGUMENT IS A FILE

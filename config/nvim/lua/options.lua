@@ -14,7 +14,7 @@ o.incsearch = true -- Show pattern while typing
 
 -- Line numbers
 o.number = true -- Line numbers
-o.numberwidth = 2 -- Space between numbers and window
+o.numberwidth = 4 -- Space between numbers and window
 o.signcolumn = 'yes' -- Show signs, "yes" always leaves space for signs
 
 -- ETC --
@@ -25,8 +25,10 @@ o.termguicolors = true
 o.scrolloff = 16
 o.fillchars:append('eob: ')
 o.updatetime = 100
+o.relativenumber = true
 
 -- TITLE --
 o.title = true
+o.titlestring = '%((%{expand("%:~:.:h")})%) %t%( %m%) - nvim'
 
 g.mapleader = ' '
