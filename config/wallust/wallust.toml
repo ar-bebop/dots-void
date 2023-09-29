@@ -63,3 +63,15 @@ target = "~/.config/qutebrowser/colors.py"
 [[entry]]
 template = "dunst.conf"
 target = "~/.config/dunst/dunstrc.d/99-colors.conf"
+
+[[entry]]
+template = "gtkrc"
+target = "~/.local/share/themes/FlatColor/gtk-2.0/gtkrc"
+
+[[entry]]
+template = "gtk3.css"
+target = "~/.local/share/themes/FlatColor/gtk-3.0/gtk.css"
+
+[[entry]]
+template = "gtk3_2.css"
+target = "~/.local/share/themes/FlatColor/gtk-3.20/gtk.css"

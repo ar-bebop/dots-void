@@ -48,7 +48,7 @@ xsetroot -name "fsignal:1" &&
     printf "DWM RELOADED.\n---\n"
 
 # DUNST
-killall dunst; dunst & # could not find better solution
+killall dunst; dunst 2> /dev/null & # could not find better solution
 printf "DUNST RESTARTED.\n---\n"
 
 # QUTEBROWSER
