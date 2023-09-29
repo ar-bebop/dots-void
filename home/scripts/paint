@@ -14,6 +14,14 @@ else
     wallust "$@" 2> /dev/null || FAIL=1
 fi
 
+# CHECK IF LAST ARGUMENT IS A FILE
+for ARG; do true; done # SKIP TO LAST ARGUMENT
+if [ -f "$ARG" ]; then
+    WALLPAPER="$ARG"
+    readlink -f "$WALLPAPER" > "$WALLPAPER_CACHE"
+fi
+
+echo "$FAIL"
 if [ "$FAIL" = 1 ]; then
     printf "COLORS COULD NOT BE GENERATED, THEME IS BEING USED.\n####\n"
     THEME=$("$(dirname "$0")"/wal-theme-picker/wal-theme-picker.py "$WALLPAPER" |
@@ -21,13 +29,6 @@ if [ "$FAIL" = 1 ]; then
         shuf -n 1)
     wallust theme "$THEME"
 
-fi
-
-# CHECK IF LAST ARGUMENT IS A FILE
-for ARG; do true; done # SKIP TO LAST ARGUMENT
-if [ -f "$ARG" ]; then
-    WALLPAPER="$ARG"
-    readlink -f "$WALLPAPER" > "$WALLPAPER_CACHE"
 fi
 
 # SET WALLPAPER
@@ -38,10 +39,18 @@ killall xwallpaper 2> /dev/null; xwallpaper --daemon --zoom "$WALLPAPER"
 # ARE ALWAYS RUN
 printf "\nRELOADING SOFTWARE...\n===\n"
 
+# XRESOURCES
+xrdb -I"$HOME"/.cache -merge ~/.config/Xresources &&
+    printf "XRESOURCES RELOADED.\n---\n"
+
+# DWM
+xsetroot -name "fsignal:1" &&
+    printf "DWM RELOADED.\n---\n"
+
+# DUNST
+killall dunst; dunst & # could not find better solution
+printf "DUNST RESTARTED.\n---\n"
+
 # QUTEBROWSER
 pgrep qutebrowser > /dev/null 2>&1 && qutebrowser ":config-source" &&
     printf "QUTEBROWSER RELOADED.\n---\n"
-
-# XRESOURCES
-xrdb -I"$HOME"/.cache -merge ~/.config/Xresources &&
-    printf "XRESOURCES RELOADED.\n"
