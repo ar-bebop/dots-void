@@ -10,7 +10,9 @@ Selection=false # emptty does not ask for desktop selection
 
 # X SETTINGS
 autorandr -c
+light -I &
 xset r rate 400 60 &
+xset -dpms &
 xbanish &
 
 paint & # INIT WALLPAPER AND COLORS
