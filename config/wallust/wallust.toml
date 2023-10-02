@@ -50,7 +50,7 @@ target = "~/.cache/Xcolors"
 
 [[entry]]
 template = "nvim.lua"
-target = "~/.config/nvim/lua/config/colors.lua"
+target = "~/.config/nvim/lua/colors.lua"
 
 [[entry]]
 template = "sioyek.config"

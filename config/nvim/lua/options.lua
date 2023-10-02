@@ -29,6 +29,6 @@ o.relativenumber = true
 
 -- TITLE --
 o.title = true
-o.titlestring = '%((%{expand("%:~:.:h")})%) %t%( %m%) - nvim'
+o.titlestring = '%((%{expand("%:~:.:h")})%) %t%( %m%) - nvim '
 
 g.mapleader = ' '
