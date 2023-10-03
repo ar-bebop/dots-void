@@ -90,7 +90,9 @@ lazy.setup {
     {
         'lukas-reineke/indent-blankline.nvim',
         main = 'ibl',
-        config = true
+        opts = {
+            indent = { char = '│' },
+        }
     },
     {
         'lewis6991/gitsigns.nvim',
