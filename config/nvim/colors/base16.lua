@@ -1,3 +1,4 @@
+require('plenary.reload').reload_module('colors')
 local colorscheme = require('colors')
 
 require('mini.base16').setup({

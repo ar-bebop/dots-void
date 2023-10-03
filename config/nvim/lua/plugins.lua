@@ -89,10 +89,8 @@ lazy.setup {
     },
     {
         'lukas-reineke/indent-blankline.nvim',
-        opts = {
-            show_current_context = true,
-            show_current_context_start = true
-        }
+        main = 'ibl',
+        config = true
     },
     {
         'lewis6991/gitsigns.nvim',

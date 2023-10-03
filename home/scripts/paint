@@ -54,3 +54,10 @@ printf "DUNST RESTARTED.\n---\n"
 # QUTEBROWSER
 pgrep qutebrowser > /dev/null 2>&1 && qutebrowser ":config-source" &&
     printf "QUTEBROWSER RELOADED.\n---\n"
+
+# NVIM
+for INSTANCE in $(nvr --nostart --serverlist); do
+    nvr --nostart --servername "$INSTANCE" -c 'colorscheme base16' &&
+        printf "RELOADED NVIM INSTANCE.\n"
+done
+printf "RELOADED ALL NVIM INSTANCES.\n---\n"
