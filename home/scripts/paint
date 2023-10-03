@@ -21,9 +21,8 @@ if [ -f "$ARG" ]; then
     readlink -f "$WALLPAPER" > "$WALLPAPER_CACHE"
 fi
 
-echo "$FAIL"
 if [ "$FAIL" = 1 ]; then
-    printf "COLORS COULD NOT BE GENERATED, THEME IS BEING USED.\n####\n"
+    printf "####\nCOLORS COULD NOT BE GENERATED, THEME IS BEING USED.\n####\n"
     THEME=$("$(dirname "$0")"/wal-theme-picker/wal-theme-picker.py "$WALLPAPER" |
         awk 'NR==2{print $2}' |
         shuf -n 1)
@@ -37,27 +36,33 @@ killall xwallpaper 2> /dev/null; xwallpaper --daemon --zoom "$WALLPAPER"
 
 # RELOAD HOOKS,
 # ARE ALWAYS RUN
-printf "\nRELOADING SOFTWARE...\n===\n"
+printf "===\nRELOADING SOFTWARE...\n===\n"
 
 # XRESOURCES
 xrdb -I"$HOME"/.cache -merge ~/.config/Xresources &&
-    printf "XRESOURCES RELOADED.\n---\n"
+    printf "\tXRESOURCES RELOADED.\n---\n"
 
 # DWM
 xsetroot -name "fsignal:1" &&
-    printf "DWM RELOADED.\n---\n"
+    printf "\tDWM RELOADED.\n---\n"
 
 # DUNST
 killall dunst; dunst 2> /dev/null & # could not find better solution
-printf "DUNST RESTARTED.\n---\n"
+printf "\tDUNST RESTARTED.\n---\n"
 
 # QUTEBROWSER
-pgrep qutebrowser > /dev/null 2>&1 && qutebrowser ":config-source" &&
-    printf "QUTEBROWSER RELOADED.\n---\n"
+pgrep qutebrowser > /dev/null 2>&1 &&
+    qutebrowser ":config-source" > /dev/null 2>&1 &&
+    printf "\tQUTEBROWSER RELOADED.\n---\n"
 
 # NVIM
 for INSTANCE in $(nvr --nostart --serverlist); do
     nvr --nostart --servername "$INSTANCE" -c 'colorscheme base16' &&
-        printf "RELOADED NVIM INSTANCE.\n"
+        printf "\tRELOADED NVIM INSTANCE.\n"
 done
-printf "RELOADED ALL NVIM INSTANCES.\n---\n"
+printf "\tRELOADED ALL NVIM INSTANCES.\n---\n"
+
+# SIOYEK
+pgrep sioyek > /dev/null 2>&1 &&
+    sioyek --execute-command source_config --execute-command-data "$HOME/.config/sioyek/colors.config" > /dev/null 2>&1 &&
+    printf "\tSIOYEK RELOADED.\n---\n"

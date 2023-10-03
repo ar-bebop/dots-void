@@ -1,8 +1,8 @@
-dwm.normbgcolor: {color0}
-dwm.normbordercolor: {color8}
-dwm.normfgcolor: {color15}
+dwm.normbgcolor: {background}
+dwm.normbordercolor: {background}
+dwm.normfgcolor: {foreground}
 
-dwm.selbgcolor: {color0}
+dwm.selbgcolor: {background}
 dwm.selbordercolor: {color2}
 dwm.selfgcolor: {color2}
 
