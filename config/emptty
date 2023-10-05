@@ -10,7 +10,7 @@ Selection=false # emptty does not ask for desktop selection
 
 # X SETTINGS
 autorandr -c
-light -I &
+brillo -u 200000 -I &
 xset r rate 400 60 &
 xset -dpms &
 xbanish &
