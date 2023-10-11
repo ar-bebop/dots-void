@@ -14,3 +14,10 @@ dwm.col3: {color5}
 dwm.col4: {color6}
 dwm.col5: {color7}
 dwm.col6: {color8}
+
+xmenu.background: {background}
+xmenu.foreground: {foreground}
+xmenu.selbackground: {foreground}
+xmenu.selforeground: {background}
+xmenu.border: {color2}
+xmenu.separator: {color8}

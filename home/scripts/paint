@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # WALLPAPER CACHE
+WALLPAPER_DIR="$HOME/pics/wallpapers"
 WALLPAPER_CACHE="$HOME/.cache/wallpaper"
 [ -f "$WALLPAPER_CACHE" ] && WALLPAPER="$(cat ~/.cache/wallpaper)"
 
@@ -19,6 +20,9 @@ for ARG; do true; done # SKIP TO LAST ARGUMENT
 if [ -f "$ARG" ]; then
     WALLPAPER="$ARG"
     readlink -f "$WALLPAPER" > "$WALLPAPER_CACHE"
+elif [ "$1" = "-r" ] || [ "$1" = "--random" ]; then
+    WALLPAPER="$WALLPAPER_DIR/$(ls "$WALLPAPER_DIR" | shuf -n 1)"
+    readlink -f "$WALLPAPER" > "$WALLPAPER_CACHE"
 fi
 
 if [ "$FAIL" = 1 ]; then
@@ -27,7 +31,6 @@ if [ "$FAIL" = 1 ]; then
         awk 'NR==2{print $2}' |
         shuf -n 1)
     wallust theme "$THEME"
-
 fi
 
 # SET WALLPAPER

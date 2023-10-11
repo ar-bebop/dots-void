@@ -1,5 +1,5 @@
-local wk = require('which-key')
 local set = vim.keymap.set
+local wk = require('which-key')
 local telescope = require('telescope.builtin')
 local kiwi = require('kiwi')
 
@@ -67,11 +67,7 @@ wk.register({
     }
 })
 
+set('i', '<S-tab>', '<C-V><tab>', { desc = 'next buffer', remap = true })
 set('n', '<tab>', '<cmd>bnext<cr>', { desc = 'next buffer' })
 set('n', '<S-tab>', '<cmd>bNext<cr>', { desc = 'previous buffer' })
 set('n', '<C-s>', '<cmd>write<cr>', { desc = 'write buffer' })
-
--- this is a very nasty hack, for some reason there is no reasonable way to map the below in lua,
--- so vimscript is used to map, along with empty lua mapping for description
--- set('n', '<leader>kr', '', { desc = 'evaluate operator' }) -- NVM THIS DIDNT WORK
-vim.cmd('nnoremap <expr><silent> <leader>kr  nvim_exec("MagmaEvaluateOperator", v:true)')
