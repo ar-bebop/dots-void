@@ -1,0 +1,5 @@
+#!/bin/sh
+
+paint > /dev/null 2>&1
+
+notify-send -i display "Switched to display profile:\n" "$AUTORANDR_CURRENT_PROFILE"

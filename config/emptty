@@ -8,20 +8,12 @@ Selection=false # emptty does not ask for desktop selection
 [ -f ~/.profile ] && . ~/.profile
 [ -f ~/.config/Xresources ] && xrdb -I"$HOME"/.cache -merge ~/.config/Xresources
 
-# X SETTINGS
-autorandr -c
-brillo -u 200000 -I &
-xset r rate 400 60 &
-xset -dpms &
-xbanish &
-xscreensaver &
-
-paint & # INIT WALLPAPER AND COLORS
-
 # DAEMONS
 killall pipewire 2> /dev/null; pipewire &
 killall picom 2> /dev/null; picom -b
 killall dunst 2> /dev/null; dunst &
+killall xbanish 2> /dev/null; xbanish &
+killall xscreensaver 2> /dev/null; xscreensaver &
 
 # programs below require pipewire to be initialized and running
 # this is a hacky fix... using "until pidof" loop did not work
@@ -29,4 +21,13 @@ sleep 2
 killall pulse_daemon.sh 2> /dev/null; ~/suckless/dwmblocks/daemons/pulse_daemon.sh &
 killall dwmblocks 2> /dev/null; dwmblocks &
 
+# X SETTINGS
+autorandr -c
+brillo -u 200000 -I
+xset r rate 400 60
+xset -dpms
+
+paint & # INIT WALLPAPER AND COLORS
+
+dbus-cleanup-sockets
 exec dbus-launch --exit-with-session /usr/local/bin/dwm
