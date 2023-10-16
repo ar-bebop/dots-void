@@ -3,5 +3,6 @@ return {
     main = 'ibl',
     opts = {
         indent = { char = '│' },
+        scope = { highlight = 'LineNr' }
     }
 }

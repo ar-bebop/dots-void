@@ -2,4 +2,4 @@
 
 paint > /dev/null 2>&1
 
-notify-send -i display "Switched to display profile:\n" "$AUTORANDR_CURRENT_PROFILE"
+notify-send -i display "Switched to display profile:" "$AUTORANDR_CURRENT_PROFILE"

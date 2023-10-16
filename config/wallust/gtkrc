@@ -18,7 +18,7 @@ color13:{color13}
 color14:{color14}
 color15:{color15}
 text_color:{foreground}
-selected_bg_color:{color1}
+selected_bg_color:{color5}
 selected_fg_color:{color15}
 tooltip_bg_color:{color0}
 tooltip_fg_color:{color15}

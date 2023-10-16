@@ -4,6 +4,10 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-        require('config.mini')
+        require('mini.animate').setup()
+        require('mini.surround').setup()
+        require('mini.align').setup()
+        require('mini.pairs').setup()
+        require('mini.trailspace').setup()
     end
 }

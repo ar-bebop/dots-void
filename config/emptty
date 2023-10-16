@@ -22,12 +22,12 @@ killall pulse_daemon.sh 2> /dev/null; ~/suckless/dwmblocks/daemons/pulse_daemon.
 killall dwmblocks 2> /dev/null; dwmblocks &
 
 # X SETTINGS
-autorandr -c
-brillo -u 200000 -I
-xset r rate 400 60
-xset -dpms
+autorandr -c &
+brillo -u 200000 -I &
+xset r rate 400 60 &
+xset -dpms &
 
-paint & # INIT WALLPAPER AND COLORS
+paint # WALLPAPER AND COLORS
 
 dbus-cleanup-sockets
 exec dbus-launch --exit-with-session /usr/local/bin/dwm
