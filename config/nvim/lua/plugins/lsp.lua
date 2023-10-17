@@ -20,5 +20,19 @@ return {
         config = function()
             require('config.lsp')
         end
+    },
+    {
+        'nvimdev/lspsaga.nvim',
+        lazy = true,
+        event = 'LspAttach',
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+            'nvim-tree/nvim-web-devicons'
+        },
+        opts = {
+            symbol_in_winbar = {
+                enable = false
+            }
+        }
     }
 }

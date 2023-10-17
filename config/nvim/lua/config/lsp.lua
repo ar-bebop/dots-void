@@ -1,3 +1,4 @@
+-- AUTOMATIC LSP SETUP
 require('mason-lspconfig').setup_handlers {
     -- The first entry (without a key) will be the default handler
     -- and will be called for each installed server that doesn't have
