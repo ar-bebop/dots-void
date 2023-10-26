@@ -15,6 +15,7 @@ install     stow all directories
 remove      unstow all directories
 EOF
 }
+
 # CONFIG
 install_config() {
     [ -d "$HOME/.config" ] || mkdir "$HOME/.config"
@@ -29,8 +30,6 @@ remove_all() {
     stow -D --dotfiles home
     stow -D --target="$HOME/.config" config
 }
-
-install_config
 
 case "$1" in
     install)
