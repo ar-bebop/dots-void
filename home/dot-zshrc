@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-cat ~/.cache/wallust/sequences
+[[ -f "$HOME/.cache/wallust/sequences" ]] && cat "$HOME/.cache/wallust/sequences"
 
 # INSTANT PROMPT. SHOULD STAY AT TOP. CODE REQUIRING INPUT SHOULD BE BEFORE.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
