@@ -4,3 +4,5 @@ config/dunst/dunstrc.d/99-colors.conf
 config/qutebrowser/colors.py
 config/sioyek/colors.config
 config/nvim/lua/colors.lua
+config/qutebrowser/autoconfig.yml
+config/qutebrowser/qsettings/QtProject.conf
