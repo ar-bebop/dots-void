@@ -46,6 +46,7 @@ zcomet load jeffreytse/zsh-vi-mode
 zcomet load zsh-users/zsh-syntax-highlighting # KEEP THIS AND NEXT LAST, IN ORDER
 zcomet load zsh-users/zsh-autosuggestions
 zcomet load zsh-users/zsh-history-substring-search
+zcomet load zsh-users/zsh-completions
 
 # COMPLETIONS
 zstyle ':completion:*' auto-description 'specify: %d'

@@ -27,7 +27,7 @@ fi
 
 if [ "$FAIL" = 1 ]; then
     printf "####\nCOLORS COULD NOT BE GENERATED, THEME IS BEING USED.\n####\n"
-    THEME=$("$(dirname "$0")"/wal-theme-picker/wal-theme-picker.py "$WALLPAPER" |
+    THEME=$("$(dirname "$0")"/wal-theme-picker/wal-theme-picker.py -c 4 "$WALLPAPER" |
         awk 'NR==2{print $2}' |
         shuf -n 1)
     wallust theme "$THEME"

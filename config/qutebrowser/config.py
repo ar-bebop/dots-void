@@ -5,6 +5,7 @@ color(c)
 config.load_autoconfig(False)
 
 c.colors.webpage.preferred_color_scheme = 'dark'
+c.colors.webpage.darkmode.policy.images = 'never'
 
 c.content.blocking.method = 'both'
 
