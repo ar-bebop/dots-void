@@ -8,6 +8,7 @@ Selection=false # emptty does not ask for desktop selection
 [ -f ~/.profile ] && . ~/.profile
 [ -f ~/.config/Xresources ] && xrdb -I"$HOME"/.cache -merge ~/.config/Xresources
 
+export $(dbus-launch --exit-with-x11)
 # DAEMONS
 killall pipewire 2> /dev/null; pipewire &
 killall picom 2> /dev/null; picom -b
@@ -30,4 +31,4 @@ xset -dpms &
 paint # WALLPAPER AND COLORS
 
 dbus-cleanup-sockets
-exec dbus-launch --exit-with-session /usr/local/bin/dwm
+exec /usr/local/bin/dwm

@@ -9,10 +9,12 @@ usage() {
     cat << EOF
 .../bootstrap.sh <argument>
 
-Arguments: (only one may be specified)
+Arguments: (only one may be specified), if none are specified the default is "all".
 
-install     stow all directories
+all         stow all directories
 remove      unstow all directories
+config      stow config directory
+home        stow home directory
 EOF
 }
 
@@ -21,23 +23,39 @@ install_config() {
     [ -d "$HOME/.config" ] || mkdir "$HOME/.config"
     stow -R --target="$HOME/.config" config
 }
+remove_config() {
+    stow -D --target="$HOME/.config" config
+}
+
 # HOME
 install_home() {
     stow -R --dotfiles home
 }
-
-remove_all() {
+remove_home() {
     stow -D --dotfiles home
-    stow -D --target="$HOME/.config" config
+}
+
+install_all() {
+    install_config
+    install_home
+}
+remove_all() {
+    remove_config
+    remove_home
 }
 
 case "$1" in
-    install)
-        install_config
-        install_home
+    all|"")
+        install_all
         ;;
     remove)
         remove_all
+        ;;
+    config)
+        install_config
+        ;;
+    home)
+        install_home
         ;;
     *)
         printf "Invalid argument.\n"

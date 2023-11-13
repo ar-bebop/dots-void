@@ -55,7 +55,7 @@ def color(c):
     c.colors.completion.scrollbar.fg = base06
     # Color of the scrollbar in the completion view.
     c.colors.completion.scrollbar.bg = base00
-    
+
     # Background color of disabled items in the context menu.
     c.colors.contextmenu.disabled.bg = base08
     # Foreground color of disabled items in the context menu.
@@ -68,7 +68,7 @@ def color(c):
     c.colors.contextmenu.selected.bg = base04
     #Foreground color of the context menu’s selected item. If set to null, the Qt default is used.
     c.colors.contextmenu.selected.fg = base00
-    
+
     # Background color for the download bar.
     c.colors.downloads.bar.bg = base00
     # Color gradient start for download text.
@@ -81,7 +81,7 @@ def color(c):
     c.colors.downloads.stop.bg = base05
     # Foreground color for downloads with errors.
     c.colors.downloads.error.fg = base01
-    
+
     # Font color for hints.
     c.colors.hints.fg = base00
     # Background color for hints. Note that you can use a `rgba(...)` value
@@ -89,7 +89,7 @@ def color(c):
     c.colors.hints.bg = '#BA' + base03[1:]
     # Font color for the matched part of hints.
     c.colors.hints.match.fg = base01
-    
+
     # Text color for the keyhint widget.
     c.colors.keyhint.fg = base0F
     # Highlight color for keys to complete the current keychain.
@@ -97,28 +97,28 @@ def color(c):
     # Background color of the keyhint widget.
     c.colors.keyhint.bg = base00
     c.hints.border = '0px solid #000000'
-    
+
     # Foreground color of an error message.
     c.colors.messages.error.fg = base00
     # Background color of an error message.
     c.colors.messages.error.bg = base01
     # Border color of an error message.
     c.colors.messages.error.border = base00
-    
+
     # Foreground color of a warning message.
     c.colors.messages.warning.fg = base00
     # Background color of a warning message.
     c.colors.messages.warning.bg = base05
     # Border color of a warning message.
     c.colors.messages.warning.border = base00
-    
+
     # Foreground color of an info message.
     c.colors.messages.info.fg = base0F
     # Background color of an info message.
     c.colors.messages.info.bg = base00
     # Border color of an info message.
     c.colors.messages.info.border = base00
-    
+
     # Foreground color for prompts.
     c.colors.prompts.fg = base0F
     # Border used around UI elements in prompts.
@@ -129,7 +129,7 @@ def color(c):
     c.colors.prompts.selected.bg = base03
     # Foreground color for the selected item in filename prompts.
     c.colors.prompts.selected.fg = base00
-    
+
     # Foreground color of the statusbar.
     c.colors.statusbar.normal.fg = base0F
     # Background color of the statusbar.
@@ -178,7 +178,7 @@ def color(c):
     c.colors.statusbar.url.success.https.fg = base04
     # Foreground color of the URL in the statusbar when there's a warning.
     c.colors.statusbar.url.warn.fg = base01
-    
+
     # Background color of the tab bar.
     c.colors.tabs.bar.bg = base00
     # Color gradient start for the tab indicator.
@@ -219,7 +219,3 @@ def color(c):
     c.colors.tabs.pinned.selected.even.bg = base06
     # Background color of pinned selected odd tabs.
     c.colors.tabs.pinned.selected.odd.bg = base06
-    
-    # Background color for webpages if unset (or empty to use the theme's
-    # color).
-    c.colors.webpage.bg = base00

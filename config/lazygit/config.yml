@@ -1,5 +1,0 @@
-reporting: "off"
-startupPopupVersion: 1
-os:
-  editPreset: 'nvim'
-  editInTerminal: true
