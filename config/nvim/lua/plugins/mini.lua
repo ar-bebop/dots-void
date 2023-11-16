@@ -1,3 +1,6 @@
+-- Miscellaneous plugins,
+-- animations, operators, trailing space highlight
+
 return {
     'echasnovski/mini.nvim',
     version = '*',

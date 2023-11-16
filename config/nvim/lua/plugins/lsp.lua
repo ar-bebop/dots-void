@@ -1,3 +1,5 @@
+-- Everything lsp related
+
 return {
     {
         'williamboman/mason.nvim',

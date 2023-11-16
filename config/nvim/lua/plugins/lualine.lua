@@ -1,3 +1,5 @@
+-- Status bar, buffers line, tabs, etc.
+
 local colors = require('colors')
 
 local theme = {
