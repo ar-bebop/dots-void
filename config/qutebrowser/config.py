@@ -27,5 +27,7 @@ c.tabs.show = 'multiple'
 
 c.editor.command = ['nvim', '{file}']
 
+c.url.searchengines = {'DEFAULT': 'https://duckduckgo.com/?q={}', 'google': 'https://google.com/search?hl=en&q={}'}
+
 config.bind(',v', 'hint media spawn mpv {hint-url}')
 config.bind(',m', 'hint media spawn nsxiv {hint-url}')
