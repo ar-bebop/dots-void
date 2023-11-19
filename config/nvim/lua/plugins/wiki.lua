@@ -5,14 +5,19 @@ return {
         -- Simple nvim wiki
         'serenevoid/kiwi.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
-        lazy = true,
+        event = 'VeryLazy',
         opts = {
-            { name = 'notes', path = os.getenv('HOME') .. '/notes' }
+            {
+                name = 'notes',
+                path = os.getenv('HOME') .. '/notes'
+            }
         }
     },
     {
         -- Preview markdown files in browser
         'iamcco/markdown-preview.nvim',
+        lazy = true,
+        event = 'BufEnter *.md',
         build = function()
             vim.fn['mkdp#util#install']()
         end,

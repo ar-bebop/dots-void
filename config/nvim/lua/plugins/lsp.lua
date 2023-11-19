@@ -1,27 +1,27 @@
+-- LSP
 -- Everything lsp related
 
 return {
     {
-        'williamboman/mason.nvim',
-        lazy = false,
-        priority = 900,
-        config = true
-    },
-    {
         'williamboman/mason-lspconfig.nvim',
-        dependencies = { 'williamboman/mason.nvim' },
-        lazy = false,
-        priority = 800,
-        config = true
+        dependencies = { 'williamboman/mason.nvim', 'neovim/nvim-lspconfig' },
+        lazy = true,
+        event = 'BufEnter',
+        config = function()
+            require('mason-lspconfig').setup()
+            require('config.lsp')
+        end
     },
     {
         'neovim/nvim-lspconfig',
-        dependencies = { 'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim' },
-        lazy = false,
-        priority = 700,
-        config = function()
-            require('config.lsp')
-        end
+        lazy = true,
+    },
+    {
+        'williamboman/mason.nvim',
+        lazy = true,
+        cmd = 'Mason',
+        priority = 900,
+        config = true
     },
     {
         'nvimdev/lspsaga.nvim',

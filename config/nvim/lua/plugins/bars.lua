@@ -1,3 +1,4 @@
+-- BARS
 -- Status bar, buffers line, tabs, etc.
 
 local colors = require('colors')
@@ -119,6 +120,7 @@ local opts = {
 
 return {
     'nvim-lualine/lualine.nvim',
+    lazy = false,
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = opts
 }

@@ -4,6 +4,8 @@ return {
     {
         -- Indentation, scope, newlines, etc.
         'lukas-reineke/indent-blankline.nvim',
+        lazy = true,
+        event = { 'BufReadPost', 'BufNewFile' },
         main = 'ibl',
         opts = {
             indent = { char = '│' },
@@ -13,6 +15,13 @@ return {
     {
         -- Color codes, e.g. hex, rgb, etc.
         'uga-rosa/ccc.nvim',
-        opts = { highlighter = { auto_enable = true, lsp = true } },
+        lazy = true,
+        event = { 'BufReadPost', 'BufNewFile' },
+        opts = {
+            highlighter = {
+                auto_enable = true,
+                lsp = true
+            }
+        },
     }
 }

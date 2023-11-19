@@ -5,7 +5,9 @@ return {
         -- Completions plugin
         'ms-jpq/coq_nvim',
         branch = 'coq',
-        event = 'BufEnter',
+        lazy = true,
+        event = { 'BufReadPost', 'BufNewFile' },
+        dependencies = { 'ms-jpq/coq.artifacts' },
         config = function ()
             vim.cmd('COQnow --shut-up')
         end
@@ -13,6 +15,7 @@ return {
     {
         -- Snippets
         'ms-jpq/coq.artifacts',
+        lazy = true,
         branch = 'artifacts'
     }
 }
