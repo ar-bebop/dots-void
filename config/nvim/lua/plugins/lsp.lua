@@ -6,7 +6,7 @@ return {
         'williamboman/mason-lspconfig.nvim',
         dependencies = { 'williamboman/mason.nvim', 'neovim/nvim-lspconfig' },
         lazy = true,
-        event = 'BufEnter',
+        event = { 'BufReadPost', 'BufNewFile' },
         config = function()
             require('mason-lspconfig').setup()
             require('config.lsp')

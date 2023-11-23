@@ -11,9 +11,9 @@ wk.register({
         o = { telescope.oldfiles, 'old' }
     },
     ['<leader>n'] = {
-        name = 'nvim-tree',
-        n = { '<cmd>NvimTreeToggle<cr>', 'toggle' },
-        f = { '<cmd>NvimTreeFocus<cr>', 'focus' }
+        name = 'neo-tree',
+        n = { '<cmd>Neotree toggle<cr>', 'toggle' },
+        f = { '<cmd>Nvimtree float<cr>', 'focus' }
     },
     ['<leader>l'] = {
         name = 'lsp',
@@ -70,10 +70,13 @@ wk.register({
     },
 })
 
+set('n', '<A-w>', '<cmd>WinShift<cr>', { desc = 'window move mode'})
+
 set('n', '<tab>', '<cmd>bnext<cr>', { desc = 'next buffer' })
 set('n', '<S-tab>', '<cmd>bNext<cr>', { desc = 'previous buffer' })
 set('n', '<C-s>', '<cmd>write<cr>', { desc = 'write buffer' })
 set('i', '<S-tab>', '<C-V><tab>', { desc = 'insert true tab'})
+
 set('n', '[d', vim.diagnostic.goto_prev, { desc = 'previous definition' })
 set('n', ']d', vim.diagnostic.goto_next, { desc = 'next definition' })
 set('n', 'K', '<cmd>Lspsaga hover_doc<cr>', { desc = 'hover doc' })

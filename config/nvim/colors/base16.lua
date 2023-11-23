@@ -1,5 +1,11 @@
+local ok, colorscheme = pcall(require, 'colors')
+
+if not ok then
+    vim.cmd('colroscheme default')
+    return
+end
+
 require('plenary.reload').reload_module('colors')
-local colorscheme = require('colors')
 
 require('mini.base16').setup({
     palette = colorscheme,
@@ -41,6 +47,3 @@ vim.cmd('hi DiffChange guibg=none')
 -- WHICH-KEY
 vim.cmd('hi WhichKeyFloat guibg=none')
 vim.cmd('hi WhichKeySeparator guibg=none')
-
--- INDENT-BLANKLINE
-
