@@ -17,7 +17,17 @@ vim.opt.rtp:prepend(lazypath)
 local ok, lazy = pcall(require, 'lazy')
 if not ok then return end
 
-lazy.setup('plugins')
+local lazy_opts = {
+    ui = {
+        border = 'single'
+    },
+    change_detection = {
+        enabled = false,
+        notify = false
+    }
+}
+
+lazy.setup('plugins', lazy_opts)
 
 require('mappings')
 

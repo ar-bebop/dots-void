@@ -21,17 +21,18 @@ wk.register({
             name = 'diagnostics',
             f = { vim.diagnostic.open_float, 'open floating' },
             l = { vim.diagnostic.setloclist, 'add to location list' },
-            a = { '<cmd>Lspsaga code_action<cr>', 'code action' }
+            a = { '<cmd>Lspsaga code_action<cr>', 'code action' },
+            c = { '<cmd>Lspsaga incoming_calls<cr>' }
         },
         f = {
             name = 'find',
             d = { '<cmd>Lspsaga peek_definition<cr>', 'definition' },
+            t = { '<cmd>Lspsaga peek_type_definition<cr>', 'type definition' },
+            f = { '<cmd>Lspsaga finder<cr>', 'finder' },
             D = { vim.lsp.buf.declaration, 'declaration'},
             i = { vim.lsp.buf.implementation, 'implementation' },
             s = { vim.lsp.buf.signature_help, 'signature help' },
-            t = { '<cmd>Lspsaga peek_type_definition<cr>', 'type definition' },
-            r = { vim.lsp.buf.references, 'references' }
-        },
+            r = { vim.lsp.buf.references, 'references' } },
         r = {
             name = 'refactor',
             r = { '<cmd>Lspsaga rename<cr>', 'rename' },
@@ -77,6 +78,6 @@ set('n', '<S-tab>', '<cmd>bNext<cr>', { desc = 'previous buffer' })
 set('n', '<C-s>', '<cmd>write<cr>', { desc = 'write buffer' })
 set('i', '<S-tab>', '<C-V><tab>', { desc = 'insert true tab'})
 
-set('n', '[d', vim.diagnostic.goto_prev, { desc = 'previous definition' })
-set('n', ']d', vim.diagnostic.goto_next, { desc = 'next definition' })
+set('n', ']d', '<cmd>Lspsaga diagnostic_jump_next<cr>', { desc = 'next definition' })
+set('n', '[d', '<cmd>Lspsaga diagnostic_jump_prev<cr>', { desc = 'previous definition' })
 set('n', 'K', '<cmd>Lspsaga hover_doc<cr>', { desc = 'hover doc' })

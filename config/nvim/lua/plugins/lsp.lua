@@ -32,6 +32,9 @@ return {
             'nvim-tree/nvim-web-devicons'
         },
         opts = {
+            ui = {
+                border = 'single'
+            },
             symbol_in_winbar = {
                 enable = false
             }
