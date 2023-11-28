@@ -17,6 +17,20 @@ return {
         end
     },
     {
+        'kevinhwang91/nvim-ufo',
+        lazy = true,
+        event = { 'BufReadPost', 'BufNewFile' },
+        dependencies = { 'kevinhwang91/promise-async' },
+        config = function()
+            vim.o.foldcolumn = '1'
+            vim.o.foldlevel = 99
+            vim.o.foldlevelstart = 99
+            vim.o.foldenable = true
+
+            require('ufo').setup()
+        end
+    },
+    {
         -- Search and insert unicode icons
         'ziontee113/icon-picker.nvim',
         lazy = true,
