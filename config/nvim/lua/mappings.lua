@@ -1,7 +1,6 @@
 local set = vim.keymap.set
 local wk = require('which-key')
 local telescope = require('telescope.builtin')
-local ufo = require('ufo')
 local kiwi = require('kiwi')
 
 wk.register({
@@ -82,5 +81,4 @@ set('i', '<S-tab>', '<C-V><tab>', { desc = 'insert true tab'})
 set('n', ']d', '<cmd>Lspsaga diagnostic_jump_next<cr>', { desc = 'next definition' })
 set('n', '[d', '<cmd>Lspsaga diagnostic_jump_prev<cr>', { desc = 'previous definition' })
 set('n', 'K', '<cmd>Lspsaga hover_doc<cr>', { desc = 'hover doc' })
-
--- UFO KEYBVINDS NOT DONE TOTODO
+set('n', 'T', '<cmd>Lspsaga term_toggle<cr>', { desc = 'toggle terminal' })

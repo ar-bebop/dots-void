@@ -64,55 +64,14 @@ M.South_Park = {
     [[   '----------'    '----------'   '--------------'`--------------------`  ]],
 }
 
-local if_nil = vim.F.if_nil
-local fnamemodify = vim.fn.fnamemodify
-local filereadable = vim.fn.filereadable
-
-local default_header = {
-    type = "text",
-    val = M.South_Park,
-    opts = {
-        hl = "Type",
-        shrink_margin = false,
-        -- wrap = "overflow";
-    },
-}
-
-local leader = "SPC"
-
---- @param sc string
---- @param txt string
---- @param keybind string? optional
---- @param keybind_opts table? optional
-local function button(sc, txt, keybind, keybind_opts)
-    local sc_ = sc:gsub("%s", ""):gsub(leader, "<leader>")
-
-    local opts = {
-        position = "left",
-        shortcut = "[" .. sc .. "] ",
-        cursor = 1,
-        -- width = 50,
-        align_shortcut = "left",
-        hl_shortcut = { { "Operator", 0, 1 }, { "Number", 1, #sc + 1 }, { "Operator", #sc + 1, #sc + 2 } },
-        shrink_margin = false,
-    }
-    if keybind then
-        keybind_opts = if_nil(keybind_opts, { noremap = true, silent = true, nowait = true })
-        opts.keymap = { "n", sc_, keybind, keybind_opts }
-    end
-
-    local function on_press()
-        local key = vim.api.nvim_replace_termcodes(keybind .. "<Ignore>", true, false, true)
-        vim.api.nvim_feedkeys(key, "t", false)
-    end
-
-    return {
-        type = "button",
-        val = txt,
-        on_press = on_press,
-        opts = opts,
-    }
+local path_ok, plenary_path = pcall(require, "plenary.path")
+if not path_ok then
+    return
 end
+
+local dashboard = require("alpha.themes.dashboard")
+local cdir = vim.fn.getcwd()
+local if_nil = vim.F.if_nil
 
 local nvim_web_devicons = {
     enabled = true,
@@ -134,10 +93,11 @@ local function icon(fn)
     return nwd.get_icon(fn, ext, { default = true })
 end
 
-local function file_button(fn, sc, short_fn, autocd)
-    short_fn = if_nil(short_fn, fn)
+local function file_button(fn, sc, short_fn,autocd)
+    short_fn = short_fn or fn
     local ico_txt
     local fb_hl = {}
+
     if nvim_web_devicons.enabled then
         local ico, hl = icon(fn)
         local hl_option_type = type(nvim_web_devicons.highlight)
@@ -154,10 +114,10 @@ local function file_button(fn, sc, short_fn, autocd)
         ico_txt = ""
     end
     local cd_cmd = (autocd and " | cd %:p:h" or "")
-    local file_button_el = button(sc, ico_txt .. short_fn, "<cmd>e " .. fn .. cd_cmd .." <CR>")
+    local file_button_el = dashboard.button(sc, ico_txt .. short_fn, "<cmd>e " .. vim.fn.fnameescape(fn) .. cd_cmd .." <CR>")
     local fn_start = short_fn:match(".*[/\\]")
     if fn_start ~= nil then
-        table.insert(fb_hl, { "Comment", #ico_txt, #fn_start + #ico_txt })
+        table.insert(fb_hl, { "Comment", #ico_txt - 2, #fn_start + #ico_txt })
     end
     file_button_el.opts.hl = fb_hl
     return file_button_el
@@ -178,6 +138,7 @@ local mru_opts = {
 local function mru(start, cwd, items_number, opts)
     opts = opts or mru_opts
     items_number = if_nil(items_number, 10)
+
     local oldfiles = {}
     for _, v in pairs(vim.v.oldfiles) do
         if #oldfiles == items_number then
@@ -190,20 +151,31 @@ local function mru(start, cwd, items_number, opts)
             cwd_cond = vim.startswith(v, cwd)
         end
         local ignore = (opts.ignore and opts.ignore(v, get_extension(v))) or false
-        if (filereadable(v) == 1) and cwd_cond and not ignore then
+        if (vim.fn.filereadable(v) == 1) and cwd_cond and not ignore then
             oldfiles[#oldfiles + 1] = v
         end
     end
+    local target_width = 35
 
     local tbl = {}
     for i, fn in ipairs(oldfiles) do
         local short_fn
         if cwd then
-            short_fn = fnamemodify(fn, ":.")
+            short_fn = vim.fn.fnamemodify(fn, ":.")
         else
-            short_fn = fnamemodify(fn, ":~")
+            short_fn = vim.fn.fnamemodify(fn, ":~")
         end
-        local file_button_el = file_button(fn, tostring(i + start - 1), short_fn,opts.autocd)
+
+        if #short_fn > target_width then
+            short_fn = plenary_path.new(short_fn):shorten(1, { -2, -1 })
+            if #short_fn > target_width then
+                short_fn = plenary_path.new(short_fn):shorten(1, { -1 })
+            end
+        end
+
+        local shortcut = tostring(i + start - 1)
+
+        local file_button_el = file_button(fn, shortcut, short_fn,opts.autocd)
         tbl[i] = file_button_el
     end
     return {
@@ -213,102 +185,92 @@ local function mru(start, cwd, items_number, opts)
     }
 end
 
-local function mru_title()
-    return "MRU " .. vim.fn.getcwd()
-end
+local header = {
+    type = "text",
+    val = {
+        [[                                  __]],
+        [[     ___     ___    ___   __  __ /\_\    ___ ___]],
+        [[    / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\]],
+        [[   /\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \]],
+        [[   \ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
+        [[    \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
+    },
+    opts = {
+        position = "center",
+        hl = "Type",
+        -- wrap = "overflow";
+    },
+}
 
-local section = {
-    header = default_header,
-    top_buttons = {
-        type = "group",
-        val = {
-            button("e", "New file", "<cmd>ene <CR>"),
-        },
-    },
-    -- note about MRU: currently this is a function,
-    -- since that means we can get a fresh mru
-    -- whenever there is a DirChanged. this is *really*
-    -- inefficient on redraws, since mru does a lot of I/O.
-    -- should probably be cached, or maybe figure out a way
-    -- to make it a reference to something mutable
-    -- and only mutate that thing on DirChanged
-    mru = {
-        type = "group",
-        val = {
-            { type = "padding", val = 1 },
-            { type = "text", val = "MRU", opts = { hl = "SpecialComment" } },
-            { type = "padding", val = 1 },
-            {
-                type = "group",
-                val = function()
-                    return { mru(10) }
-                end,
+local section_mru = {
+    type = "group",
+    val = {
+        {
+            type = "text",
+            val = "Recent files",
+            opts = {
+                hl = "SpecialComment",
+                shrink_margin = false,
+                position = "center",
             },
         },
-    },
-    mru_cwd = {
-        type = "group",
-        val = {
-            { type = "padding", val = 1 },
-            { type = "text", val = mru_title, opts = { hl = "SpecialComment", shrink_margin = false } },
-            { type = "padding", val = 1 },
-            {
-                type = "group",
-                val = function()
-                    return { mru(0, vim.fn.getcwd()) }
-                end,
-                opts = { shrink_margin = false },
-            },
+        { type = "padding", val = 1 },
+        {
+            type = "group",
+            val = function()
+                return { mru(0, cdir) }
+            end,
+            opts = { shrink_margin = false },
         },
     },
-    bottom_buttons = {
-        type = "group",
-        val = {
-            button("q", "Quit", "<cmd>q <CR>"),
-        },
+}
+
+local buttons = {
+    type = "group",
+    val = {
+        { type = "text", val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
+        { type = "padding", val = 1 },
+        dashboard.button("e", "  New file", "<cmd>ene<CR>"),
+        dashboard.button("SPC f f", "󰈞  Find file"),
+        dashboard.button("SPC f g", "󰊄  Live grep"),
+        dashboard.button("c", "  Configuration", "<cmd>cd ~/.config/nvim/ <CR>"),
+        dashboard.button("u", "  Update plugins", "<cmd>Lazy sync<CR>"),
+        dashboard.button("q", "󰅚  Quit", "<cmd>qa<CR>"),
     },
-    footer = {
-        type = "group",
-        val = {},
-    },
+    position = "center",
 }
 
 local config = {
     layout = {
-        { type = "padding", val = 1 },
-        section.header,
         { type = "padding", val = 2 },
-        section.top_buttons,
-        section.mru_cwd,
-        section.mru,
-        { type = "padding", val = 1 },
-        section.bottom_buttons,
-        section.footer,
+        header,
+        { type = "padding", val = 2 },
+        section_mru,
+        { type = "padding", val = 2 },
+        buttons,
     },
     opts = {
-        margin = 3,
-        redraw_on_resize = false,
+        margin = 5,
         setup = function()
             vim.api.nvim_create_autocmd('DirChanged', {
                 pattern = '*',
                 group = "alpha_temp",
-                callback = function () require('alpha').redraw() end,
+                callback = function ()
+                    require('alpha').redraw()
+                    vim.cmd('AlphaRemap')
+                end,
             })
         end,
     },
 }
 
 return {
-    icon = icon,
-    button = button,
-    file_button = file_button,
+    header = header,
+    buttons = buttons,
     mru = mru,
-    mru_opts = mru_opts,
-    section = section,
     config = config,
-    -- theme config
+    -- theme specific config
+    mru_opts = mru_opts,
+    leader = dashboard.leader,
     nvim_web_devicons = nvim_web_devicons,
-    leader = leader,
-    -- deprecated
-    opts = config,
 }

@@ -30,6 +30,8 @@ vim.cmd('hi LineNr guibg=none guifg=' .. colorscheme.base0F)
 vim.cmd('hi LineNrAbove guibg=none')
 vim.cmd('hi LineNrBelow guibg=none')
 vim.cmd('hi MsgArea guibg=none')
+vim.cmd('hi FoldColumn guibg=none')
+vim.cmd('hi Folded guibg=none')
 
 -- LSP
 vim.cmd('hi DiagnosticFloatingError guibg=none')
