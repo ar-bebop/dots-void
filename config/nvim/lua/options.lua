@@ -2,23 +2,25 @@ local o = vim.opt
 local g = vim.g
 
 -- Indents
-o.expandtab = true -- Expand tabs to spaces
-o.tabstop = 4 -- Spaces in a tab
-o.softtabstop = 4 -- Spaces that are inputed for each tab while in editing mode
-o.shiftwidth = 4 -- Spaces for each (auto)indent
+o.autoindent = true
+o.smartindent = true
+o.expandtab = true
+o.tabstop = 4
+o.softtabstop = 4
+o.shiftwidth = 4
 
 -- Searching
-o.ignorecase = true -- Ignores case in search
-o.smartcase = true -- Overrides ignorecase if search contains upper case
-o.incsearch = true -- Show pattern while typing
+o.ignorecase = true
+o.smartcase = true
+o.incsearch = true
 
 -- Line numbers
-o.number = true -- Line numbers
-o.numberwidth = 4 -- Space between numbers and window
-o.signcolumn = 'yes' -- Show signs, "yes" always leaves space for signs
+o.number = true
+o.numberwidth = 4
+o.signcolumn = 'yes'
 
 -- ETC --
-o.mouse = 'a' -- Enable mouse
+o.mouse = 'a'
 o.undofile = true
 o.swapfile = false
 o.termguicolors = true

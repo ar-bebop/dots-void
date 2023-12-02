@@ -1,5 +1,9 @@
 from colors import color
 
+# these are defined global variables
+c = c
+config = config
+
 color(c)
 
 config.load_autoconfig(False)

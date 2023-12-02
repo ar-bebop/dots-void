@@ -12,5 +12,7 @@ return {
         'nvim-lua/plenary.nvim',
         'nvim-telescope/telescope.nvim'
     },
-    config = true
+    opts = {
+        api_key_cmd = 'pass show openai_key'
+    }
 }

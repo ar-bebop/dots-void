@@ -45,6 +45,10 @@ wk.register({
             l = { function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, 'list' },
         }
     },
+    ['<leader>r'] = {
+        name = 'refactor',
+        t = { MiniTrailspace.trim, 'trim whitespace' },
+    },
     ['<leader><leader>'] = {
         name = 'buffer',
         d = { '<cmd>bd<cr>', 'delete' },
