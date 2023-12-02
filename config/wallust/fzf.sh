@@ -1,0 +1,1 @@
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --color=bg+:{color0},spinner:{color5},hl:{color8},fg:{foreground},header:{color8},info:{color4},pointer:{color2},marker:{color2},fg+:{color1},prompt:{color4},hl+:{color8}"

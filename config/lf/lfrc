@@ -74,13 +74,15 @@ cmd zip ${{
     rm -rf $1
 }}
 
+# update window title
 cmd on-select &{{
+    command -v exa || exit
     lf -remote "send $id set statfmt \"$(eza -ld --color=always "$f")\""
     printf "\033]0; $(pwd | sed "s|$HOME|~|") - lf \007" > /dev/tty
 }}
 
+# display repository status in your prompt
 cmd on-cd &{{
-    # display repository status in your prompt
     if [ -d .git ] || [ -f .git ]; then
         branch=$(git branch --show-current 2>/dev/null) || true
         remote=$(git config --get branch.$branch.remote 2>/dev/null) || true
@@ -96,6 +98,17 @@ cmd on-cd &{{
         fmt="\033[32;1m%u@%h\033[0m:\033[34;1m%d\033[0m\033[1m%f\033[0m"
     fi
     lf -remote "send $id set promptfmt \"$fmt\""
+}}
+
+# zoxide
+cmd z %{{
+	result="$(zoxide query --exclude $PWD $@ | sed 's/\\/\\\\/g;s/"/\\"/g')"
+	lf -remote "send $id cd \"$result\""
+}}
+
+cmd zi ${{
+	result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
+	lf -remote "send $id cd \"$result\""
 }}
 
 map i $eval "$PAGER" "$f"
@@ -116,10 +129,10 @@ on-cd
 ${{
     w=$(tput cols)
     if [ $w -le 80 ]; then
-        lf -remote "send $id set ratios 1:2"
+        lf -remote "send $id set ratios 1:2" > /dev/null 2>&1
     elif [ $w -le 160 ]; then
-        lf -remote "send $id set ratios 1:2:3"
+        lf -remote "send $id set ratios 1:2:3" > /dev/null 2>&1
     else
-        lf -remote "send $id set ratios 1:2:3:5"
+        lf -remote "send $id set ratios 1:2:3:5" > /dev/null 2>&1
     fi
 }}

@@ -13,7 +13,7 @@ ZDIR="$HOME/.config/zsh"
 [[ -f "$ZDIR/title.zsh" ]] && source "$ZDIR/title.zsh"
 
 # FZF CONFIG
-[[ -f "$ZDIR/fzf.config" ]] && source "$ZDIR/fzf.config"
+[[ -f "$ZDIR/fzf.sh" ]] && source "$ZDIR/fzf.sh"
 
 # SHELL OPTIONS AND VARIABLES
 HISTFILE=~/.cache/histfile
@@ -68,6 +68,9 @@ zstyle :compinstall filename '/home/bebop/.zshrc'
 # COMPINIT
 zstyle ':zcomet:compinit' dump-file "$HOME/.cache/zcompdump"
 zcomet compinit
+
+# ZOXIDE
+eval "$(zoxide init zsh)"
 
 # BINDS
 bindkey -M vicmd 'k' history-substring-search-up
