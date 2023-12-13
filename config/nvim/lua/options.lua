@@ -19,6 +19,10 @@ o.number = true
 o.numberwidth = 4
 o.signcolumn = 'yes'
 
+-- Folds --
+o.foldcolumn = '4'
+o.fillchars:append('foldopen:,foldclose:')
+
 -- ETC --
 o.mouse = 'a'
 o.undofile = true
