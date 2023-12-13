@@ -3,30 +3,37 @@
 # WALLPAPER CACHE
 WALLPAPER_DIR="$HOME/pics/wallpapers"
 WALLPAPER_CACHE="$HOME/.cache/wallpaper"
-[ -f "$WALLPAPER_CACHE" ] && WALLPAPER="$(cat ~/.cache/wallpaper)"
+
+COLORSCHEME=0
+FAIL=0
 
 # WRAP WALLUST
 # DEFAULT TO PREVIOUS WALLPAPER IN CACHE IF NO ARGUMENTS,
 # ELSE PASS ALL ARGUMENTS TO WALLUST
 if [ -z "$*" ]; then
     # PICK BEST FIT COLORSCHEME IF COLORS COULD NOT BE GENERATED
-    wallust "$WALLPAPER" 2> /dev/null || FAIL=1
+    [ -f "$WALLPAPER_CACHE" ] && WALLPAPER="$(cat ~/.cache/wallpaper)"
 else
-    wallust "$@" 2> /dev/null || FAIL=1
+    for arg in "$@"; do
+        if [ -f "$arg" ]; then
+            WALLPAPER="$arg"
+            readlink -f "$WALLPAPER" > "$WALLPAPER_CACHE"
+        elif [ "$arg" = "-r" ] || [ "$arg" = "--random" ]; then
+            WALLPAPER="$WALLPAPER_DIR/$(ls "$WALLPAPER_DIR" | shuf -n 1)"
+            readlink -f "$WALLPAPER" > "$WALLPAPER_CACHE"
+        elif [ "$arg" = "-c" ] || [ "$arg" = "--colorscheme" ]; then
+            COLORSCHEME=1
+            [ -f "$WALLPAPER_CACHE" ] && WALLPAPER="$(cat ~/.cache/wallpaper)"
+        fi
+    done
 fi
 
-# CHECK IF LAST ARGUMENT IS A FILE
-for ARG; do true; done # SKIP TO LAST ARGUMENT
-if [ -f "$ARG" ]; then
-    WALLPAPER="$ARG"
-    readlink -f "$WALLPAPER" > "$WALLPAPER_CACHE"
-elif [ "$1" = "-r" ] || [ "$1" = "--random" ]; then
-    WALLPAPER="$WALLPAPER_DIR/$(ls "$WALLPAPER_DIR" | shuf -n 1)"
-    readlink -f "$WALLPAPER" > "$WALLPAPER_CACHE"
+if [ "$COLORSCHEME" = 0 ]; then
+    wallust $WALLPAPER 2> /dev/null || FAIL=1
 fi
 
-if [ "$FAIL" = 1 ]; then
-    printf "####\nCOLORS COULD NOT BE GENERATED, THEME IS BEING USED.\n####\n"
+if [ "$FAIL" = 1 ] || [ "$COLORSCHEME" = 1 ]; then
+    printf "####\nCOLORS NOT GENERATED, THEME IS BEING USED.\n####\n"
     THEME=$("$(dirname "$0")"/wal-theme-picker.py -c 4 "$WALLPAPER" |
         awk 'NR==2{print $2}' |
         shuf -n 1)
